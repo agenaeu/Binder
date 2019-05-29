@@ -3,16 +3,16 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 import axios from "axios";
 //import Scryfall from './api/Scryfall_api';
 import "./App.css";
-import Card from "./components/card/Card";
 import Navbar from "./components/navbar/Navbar";
+import ImageList from "./components/imageList/ImageList";
 
-class App extends Component {
+class App extends React.Component {
   state = {
     images: []
   };
-  //comment
   
-  onLoad() {
+  
+  onButtonClick() {
     axios
       .get("https://api.scryfall.com/cards/search?order=set&q=e%3Akld")
       .then(function(response) {
@@ -64,9 +64,9 @@ class App extends Component {
             <header className="App_header">
               <h2> My Personal Binder </h2>
             </header>
-            <Navbar onClick={this.onLoad()}/>
+            <Navbar onClick={this.onButtonClick}/>
             <main className="App_card">
-           
+              <ImageList images={this.state.images} />
               {/* <Card
                 image={
                   "https://img.scryfall.com/cards/normal/front/2/d/2dea2466-5c7f-40ce-b749-100ae89d2c90.jpg?1557576604"
